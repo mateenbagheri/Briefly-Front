@@ -8,7 +8,7 @@ export class User {
   iat;
   exp;
 
-  constructor(el) {
+  constructor(el?) {
     this.id = el?.id;
     this.username = el?.username;
     this.firstName = el?.firstName;
@@ -19,7 +19,9 @@ export class User {
     this.exp = el?.exp;
   }
 
-  public get userFullName(): string {
-    return `${this.firstName ?? ""} ${this.lastName}`;
+  public get userFullName(): string | null {
+    if (this.firstName || this.lastName)
+      return `${this.firstName ?? ""} ${this.lastName}`;
+    else return 'No Name';
   }
 }

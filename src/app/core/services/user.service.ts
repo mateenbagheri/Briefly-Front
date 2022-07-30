@@ -8,7 +8,7 @@ import jwt_decode from "jwt-decode";
 })
 export class UserService {
   private user$: BehaviorSubject<User> = new BehaviorSubject<User>(
-    new User({})
+    new User()
   );
   constructor() {
     if (this.token) this.setUserByToken(this.token);
@@ -36,6 +36,6 @@ export class UserService {
 
   onLogout() {
     localStorage.clear();
-    this.user$.next(new User({}));
+    this.user$.next(new User());
   }
 }
