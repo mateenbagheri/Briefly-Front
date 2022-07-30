@@ -1,46 +1,17 @@
 <nav class="sticky top-0 bg-white h-14 w-full z-50">
   <ul class="flex h-full justify-end items-center">
-    <li class="brodcrump pl-4">
-      <!-- <h2 *ngIf="!isLeftExpanded" class="text-bold brand-font">Power Plant</h2> -->
-      <!-- <nz-breadcrumb>
-        <nz-breadcrumb-item
-        [routerLink]="[item.url]"
-        *ngFor="let item of breadcrump; let i = index"
-        >
-        <a [ngClass]="{ 'text-2xl': i == breadcrump.length - 1 }">
-          {{ item.name }}
-        </a>
-      </nz-breadcrumb-item>
-    </nz-breadcrumb> -->
+    <h2 class="text-bold brand-font ml-3 mr-auto">Briefly</h2>
+
+    <li >
+      <button mat-button> My Urls <mat-icon>link</mat-icon></button>
     </li>
-    <li *ngIf="mobileQuery.matches" >
-      <button
-        style="margin-left: auto"
-        mat-icon-button
-        (click)="
-          isLeftExpanded = !isLeftExpanded;
-          isLeftExpandedChange.emit(isLeftExpanded)
-        "
-      >
-        <mat-icon> menu </mat-icon>
-      </button>
-    </li>
-    <li class="mr-auto">
-        
-    </li>
-    <!-- <li
-      class="py-2 pr-2 ml-auto my-2 text-black rounded-full hover:text-yellow-600 cursor-pointer"
-    >
-      <button mat-icon-button (click)="openAlarms()">
-        <mat-icon>notifications</mat-icon>
-      </button>
-    </li> -->
+
     <li
       class="py-2 mx-2 rounded-sm text-black cursor-pointer flex flex-col items-end"
       *ngIf="!pending"
     >
       <span>
-        {{ userService.User.userFullName }}
+        {{ userService.User.userFullName|replaceUnderline }}
       </span>
       <span class="text-xs text-gray-400">
         <!-- {{ '-' | tokenDecoder: 'role' | ACCESS }} -->

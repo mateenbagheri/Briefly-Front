@@ -9,8 +9,14 @@ import { SharedModule } from "../shared/shared.module";
 import { MatIconModule } from "@angular/material/icon";
 import { MatMenuModule } from "@angular/material/menu";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
+import { MatButtonModule } from "@angular/material/button";
 
-const matModules = [MatIconModule, MatMenuModule, MatProgressBarModule];
+const matModules = [
+  MatButtonModule,
+  MatIconModule,
+  MatMenuModule,
+  MatProgressBarModule,
+];
 
 @NgModule({
   declarations: [

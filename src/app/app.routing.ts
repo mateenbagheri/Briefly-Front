@@ -7,14 +7,13 @@ const routes: Routes = [
     path: "",
     loadChildren: () =>
       import("./layout/layout.module").then((m) => m.LayoutModule),
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: "auth",
     loadChildren: () => import("./auth/auth.module").then((m) => m.AuthModule),
     // canActivate: [AuthGuard],
   },
-  // { path: '**', pathMatch: 'full', component: PageNotFoundComponent },
 ];
 
 @NgModule({

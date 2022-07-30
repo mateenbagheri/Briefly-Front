@@ -1,6 +1,4 @@
-import { MediaMatcher } from '@angular/cdk/layout';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { Router } from '@angular/router';
 import { AlertService } from '../../../core/alert/alert.service';
@@ -25,7 +23,6 @@ export class TopNavbarComponent implements OnInit {
     private router: Router,
     public userService: UserService,
     private alertSrv: AlertService,
-    private dialog: MatDialog
   ) {}
 
   getImageUrl(): string {
