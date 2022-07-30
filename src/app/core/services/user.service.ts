@@ -7,9 +7,9 @@ import jwt_decode from "jwt-decode";
   providedIn: "root",
 })
 export class UserService {
-  private user$: BehaviorSubject<Partial<User>> = new BehaviorSubject<
-    Partial<User>
-  >({});
+  private user$: BehaviorSubject<User> = new BehaviorSubject<User>(
+    new User({})
+  );
   constructor() {
     if (this.token) this.setUserByToken(this.token);
   }
@@ -22,7 +22,7 @@ export class UserService {
     this.user$.next(user);
   }
 
-  public get User(): Partial<User> {
+  public get User(): User {
     return this.user$.value;
   }
 
@@ -36,6 +36,6 @@ export class UserService {
 
   onLogout() {
     localStorage.clear();
-    this.user$.next({});
+    this.user$.next(new User({}));
   }
 }
