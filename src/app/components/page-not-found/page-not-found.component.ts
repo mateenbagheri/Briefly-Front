@@ -13,7 +13,7 @@ export class PageNotFoundComponent implements OnInit {
   ngOnInit(): void {}
 
   goToHome() {
-    this.router.navigate(['dashboard']);
+    this.router.navigate(['main']);
   }
 
   goBack() {

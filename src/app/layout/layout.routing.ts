@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { AuthGuard } from "../core/guard/auth.guard";
-import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
+import { MainComponent } from "./components/main/main.component";
 import { LayoutComponent } from "./layout/layout.component";
 // import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
@@ -10,10 +10,10 @@ const routes: Routes = [
     path: "",
     component: LayoutComponent,
     children: [
-      // { path: "", redirectTo: "dashboard", pathMatch: "full" }
+      { path: "", redirectTo: "main", pathMatch: "full" },
+      { path: "main", component: MainComponent },
     ],
   },
-  { path: "**", pathMatch: "full", component: PageNotFoundComponent },
 ];
 
 @NgModule({

@@ -7,6 +7,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AuthGuard } from "./core/guard/auth.guard";
 import { CoreModule } from "./core/core.module";
+import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
+import { MatIconModule } from "@angular/material/icon";
 
 const HTTP_AUTH_GUARD: ClassProvider = {
   provide: HTTP_INTERCEPTORS,
@@ -15,10 +17,11 @@ const HTTP_AUTH_GUARD: ClassProvider = {
 };
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, PageNotFoundComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    MatIconModule,
     BrowserAnimationsModule,
     HttpClientModule,
     CoreModule,
