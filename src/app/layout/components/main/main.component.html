@@ -1,5 +1,33 @@
 <div class="h-full w-full flex flex-col justify-center">
   <div class="flex w-full justify-center">
-      <p>Welcome to Briefly :)</p>
+    <form (ngSubmit)="onSubmitUrl()">
+      <mat-form-field appearance="outline" class="search-bar">
+        <mat-label>Enter Url</mat-label>
+
+        <!-- <mat-icon
+          *ngIf="gotoLotBtnFlag"
+          class="goButton"
+          color="accent"
+          (click)="onEnterUrl()"
+          >arrow_forward</mat-icon
+        >
+
+        <mat-icon
+          *ngIf="!gotoLotBtnFlag"
+          class="goButton"
+          color="warn"
+          (click)="onResetInput()"
+          >highlight_off</mat-icon
+        > -->
+        <input
+          (keypress.enter)="$event.stopPropagation(); onSubmitUrl()"
+          matInput
+          placeholder="Url"
+          type="text"
+          autocomplete="off"
+        />
+      </mat-form-field>
+      <button class="submit-button" type="submit"></button>
+    </form>
   </div>
 </div>
