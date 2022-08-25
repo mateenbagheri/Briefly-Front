@@ -1,33 +1,29 @@
-<div class="h-full w-full flex flex-col justify-center">
+<div class="wrapper h-full w-full flex flex-col justify-center">
   <div class="flex w-full justify-center">
-    <form (ngSubmit)="onSubmitUrl()">
-      <mat-form-field appearance="outline" class="search-bar">
-        <mat-label>Enter Url</mat-label>
+    <div class="grid grid-cols-4 gap-4">
+      <div class="header">
+        <h1 class="header-title">Short links, big results</h1>
+        <p>
+          A URL shortener built with powerful tools to help you grow and protect
+          your brand.
+        </p>
+      </div>
+      <form (ngSubmit)="onSubmitUrl()">
+        <mat-form-field appearance="outline" class="search-bar">
+          <mat-label>Enter Url</mat-label>
+          <mat-icon class="goButton" color="primary">search</mat-icon>
 
-        <!-- <mat-icon
-          *ngIf="gotoLotBtnFlag"
-          class="goButton"
-          color="accent"
-          (click)="onEnterUrl()"
-          >arrow_forward</mat-icon
-        >
-
-        <mat-icon
-          *ngIf="!gotoLotBtnFlag"
-          class="goButton"
-          color="warn"
-          (click)="onResetInput()"
-          >highlight_off</mat-icon
-        > -->
-        <input
-          (keypress.enter)="$event.stopPropagation(); onSubmitUrl()"
-          matInput
-          placeholder="Url"
-          type="text"
-          autocomplete="off"
-        />
-      </mat-form-field>
-      <button class="submit-button" type="submit"></button>
-    </form>
+          <input
+            (keypress.enter)="onSubmitUrl()"
+            matInput
+            placeholder="Url"
+            type="text"
+            autocomplete="off"
+          />
+        </mat-form-field>
+        <button class="submit-button" type="submit"></button>
+      </form>
+      <button mat-raised-button color="primary">Submit</button>
+    </div>
   </div>
 </div>
