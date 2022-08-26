@@ -16,7 +16,7 @@ export class AuthService {
 
   login(model) {
     return this.baseHttp
-      .request('POST', 'auth/signin')
+      .request('POST', 'user/login')
       .setBodyParams(model)
       .send();
   }

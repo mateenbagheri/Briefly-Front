@@ -1,21 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { UserService } from '../../../core/services/user.service';
-import { AuthService } from '../../shared/services/auth.service';
+import { Component, OnInit } from "@angular/core";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
+import { Subscription } from "rxjs";
+import { UserService } from "../../../core/services/user.service";
+import { AuthService } from "../../shared/services/auth.service";
 
 @Component({
-  selector: 'p-plant-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  selector: "p-plant-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.scss"],
 })
 export class LoginComponent implements OnInit {
   private loginRef$!: Subscription;
   hide = true;
   forms = new FormGroup({
-    username: new FormControl('', [Validators.required]),
-    password: new FormControl('', [
+    username: new FormControl("", [Validators.required]),
+    password: new FormControl("", [
       Validators.required,
       Validators.minLength(6),
     ]),
@@ -33,12 +33,17 @@ export class LoginComponent implements OnInit {
 
   onLogin() {
     if (this.forms.valid) {
+      const { value } = this.forms;
+      let model = {
+        Email: value.username,
+        Password: value.password,
+      };
       this.pending = true;
-      this.loginRef$ = this.authService.login(this.forms.value).subscribe({
+      this.loginRef$ = this.authService.login(model).subscribe({
         next: (response) => {
-          this.userService.setUserByToken(response.accessToken);
+          this.userService.setUserByToken(response.authorization);
           this.pending = false;
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(["/main"]);
         },
         error: (error) => {
           this.pending = false;
@@ -48,7 +53,7 @@ export class LoginComponent implements OnInit {
   }
 
   onRedirectToRegister() {
-    this.router.navigate(['/auth/register']);
+    this.router.navigate(["/auth/register"]);
   }
 
   onCancelRequest() {
