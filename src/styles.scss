@@ -1,8 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 /* You can add global styles to this file, and also import other style files */
-@import url("tailwindcss/base");
-@import url("tailwindcss/components");
-@import url("tailwindcss/utilities");
-@import './assets/styles/modified-form-fields.scss';
+@import "./assets/styles/colors.scss";
+@import "./assets/styles/main-classes.scss";
+@import "./assets/styles/formly.scss";
+// @import "~animate.css/animate.min";
+
+@import "./assets/styles/modified-form-fields.scss";
 
 html,
 body {
