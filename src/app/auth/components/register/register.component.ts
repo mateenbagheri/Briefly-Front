@@ -1,29 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { AlertService } from '../../../core/alert/alert.service';
-import { AuthService } from '../../shared/services/auth.service';
+import { Component, OnInit } from "@angular/core";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
+import { Subscription } from "rxjs";
+import { AlertService } from "../../../core/alert/alert.service";
+import { AuthService } from "../../shared/services/auth.service";
 
 @Component({
-  selector: 'p-plant-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss'],
+  selector: "p-plant-register",
+  templateUrl: "./register.component.html",
+  styleUrls: ["./register.component.scss"],
 })
 export class RegisterComponent implements OnInit {
   private loginRef$!: Subscription;
   hidePass1 = true;
   hidePass2 = true;
   forms = new FormGroup({
-    username: new FormControl('', [Validators.required]),
-    firstName: new FormControl('', [Validators.required]),
-    lastName: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [
+    // username: new FormControl('', [Validators.required]),
+    firstName: new FormControl("", [Validators.required]),
+    lastName: new FormControl("", [Validators.required]),
+    email: new FormControl("", [Validators.required, Validators.email]),
+    password: new FormControl("", [
       Validators.required,
       Validators.minLength(6),
     ]),
-    password2: new FormControl('', [
+    password2: new FormControl("", [
       Validators.required,
       Validators.minLength(6),
     ]),
@@ -40,10 +40,17 @@ export class RegisterComponent implements OnInit {
 
   onRegister() {
     if (this.forms.valid) {
+      const { value } = this.forms;
+      let model = {
+        Name: value.firstName,
+        FamilyName: value.lastName,
+        Email: value.email,
+        Password: value.password,
+      };
       this.pending = true;
-      this.loginRef$ = this.authService.signUp(this.forms.value).subscribe({
+      this.loginRef$ = this.authService.signUp(model).subscribe({
         next: (res) => {
-          this.alertService.showToaster('Successful SignUp', 'SUCCESS');
+          this.alertService.showToaster("Successful SignUp", "SUCCESS");
           this.onRedirectToLogin();
           this.pending = false;
           this.forms.enable();
@@ -56,7 +63,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onRedirectToLogin() {
-    this.router.navigate(['/auth/login']);
+    this.router.navigate(["/auth/login"]);
   }
 
   onCancelRequest() {
