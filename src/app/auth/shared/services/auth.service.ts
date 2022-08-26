@@ -9,7 +9,7 @@ export class AuthService {
 
   signUp(model) {
     return this.baseHttp
-      .request('POST', 'auth/signup')
+      .request('POST', 'user/signup')
       .setBodyParams(model)
       .send();
   }

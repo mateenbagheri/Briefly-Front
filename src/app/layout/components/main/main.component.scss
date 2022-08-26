@@ -1,31 +1,28 @@
-
 .wrapper {
-    background-image: url('../../../../assets/images/main-bg.jpg');
-    background-repeat: no-repeat;
-    background-size: auto;
+  background-image: url("../../../../assets/images/main-bg.jpg");
+  background-repeat: no-repeat;
+  background-size: auto;
 }
-
 
 .header {
-   margin-bottom: 40px;
-    &-title {
-        font-size: 40px;
-        font-weight: 600;
-    }
-    
+  margin-bottom: 40px;
+  &-title {
+    font-size: 40px;
+    font-weight: 600;
+  }
 }
 
-::ng-deep .mat-form-field-wrapper{
-    width:578px !important;
-  }
+// ::ng-deep .mat-form-field-wrapper {
+//   width: 578px !important;
+// }
 
-  .goButton {
-    caret-color: unset;
-    cursor: pointer;
-    font-weight: bold;
-    right: 0vw;
-    top: 1.5vh;
-    z-index: 1;
-    position: absolute;
-    display: inline;
-  }
+.goButton {
+  caret-color: unset;
+  cursor: pointer;
+  font-weight: bold;
+  right: 0vw;
+  top: 1.5vh;
+  z-index: 1;
+  position: absolute;
+  display: inline;
+}
