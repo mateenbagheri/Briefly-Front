@@ -11,3 +11,20 @@
     font-weight: 600;
   }
 }
+
+.go-button {
+  caret-color: unset;
+  cursor: pointer;
+  font-weight: bold;
+  right: 0vw;
+  top: 1.5vh;
+  z-index: 1;
+  position: absolute;
+  display: inline;
+}
+
+.link:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  color: darkblue;
+}

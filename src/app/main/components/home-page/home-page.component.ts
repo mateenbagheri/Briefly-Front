@@ -1,5 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl } from "@angular/forms";
+import { Router } from "@angular/router";
+import { environment } from "src/environments/environment.prod";
+import { MainService } from "../../shared/services/main.service";
 
 @Component({
   selector: "app-home-page",
@@ -8,10 +11,28 @@ import { FormControl } from "@angular/forms";
 })
 export class HomePageComponent implements OnInit {
   linkTextControl: FormControl = new FormControl([]);
-
-  constructor() {}
+  result: { text; route } = { text: "", route: "" };
+  constructor(private router: Router, private mainService: MainService) {}
 
   ngOnInit(): void {}
 
-  onSubmitUrl() {}
+  onSubmitUrl() {
+    if (this.linkTextControl.valid) {
+      this.mainService
+        .shortenUrl(this.linkTextControl.value)
+        .subscribe((res) => {
+          this.result = {
+            text: `http://localhost:4200${environment.serviceBaseUrl}${res.ShortenedUrl}`,
+            route: res.ShortenedUrl,
+          };
+        });
+    }
+  }
+
+  openShortenUrl(route) {
+    const url = this.router.serializeUrl(
+      this.router.createUrlTree([`briefly/${route}`])
+    );
+    window.open(url, "_blank");
+  }
 }

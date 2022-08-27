@@ -10,13 +10,14 @@
       </div>
       <section class="grid grid-cols-12 gap-4">
         <mat-form-field appearance="outline" class="col-span-10">
-          <mat-icon mat-icon color="primary">search</mat-icon>
           <input
-            (keypress.enter)="onSubmitUrl()"
             matInput
             placeholder="Enter Url"
             [formControl]="linkTextControl"
           />
+          <mat-icon class="go-button" mat-suffix color="primary"
+            >search</mat-icon
+          >
         </mat-form-field>
         <div class="col-span-2 self-center mb-2">
           <button
@@ -24,13 +25,14 @@
             color="primary"
             class="w-full"
             type="button"
+            (click)="onSubmitUrl()"
           >
             Submit
           </button>
         </div>
         <div class="col-span-10">
           <strong>Result is:&nbsp;</strong>
-          <span><a>h</a></span>
+          <span class="link" (click)="openShortenUrl(result.route)">{{result.text}}</span>
         </div>
         <div class="col-span-2 self-center">
           <button

@@ -9,6 +9,7 @@ import { MatMenuModule } from "@angular/material/menu";
 import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { HomePageComponent } from "./components/home-page/home-page.component";
+import { LoadShortenUrlComponent } from './components/load-shorten-url/load-shorten-url.component';
 
 const matModules = [
   MatButtonModule,
@@ -19,7 +20,7 @@ const matModules = [
 ];
 
 @NgModule({
-  declarations: [MainRoutingComponent, HomePageComponent],
+  declarations: [MainRoutingComponent, HomePageComponent, LoadShortenUrlComponent],
   imports: [
     CommonModule,
     matModules,
