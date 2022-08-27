@@ -1,9 +1,11 @@
 <nav class="sticky top-0 bg-white h-14 w-full z-50">
   <ul class="flex h-full justify-end items-center">
-    <h2 class="text-bold brand-font ml-3 mr-auto">Briefly</h2>
+    <h2 class="text-bold brand brand-font ml-3 mr-auto cursor-pointer" [routerLink]="''">Briefly</h2>
 
     <li>
-      <button mat-button>My Collections <mat-icon>library_books</mat-icon></button>
+      <button mat-button [routerLink]="'briefly/collections'" [routerLinkActive]="'active'">
+        My Collections <mat-icon>library_books</mat-icon>
+      </button>
     </li>
 
     <li
@@ -40,7 +42,9 @@
       </li>
     </ng-container>
     <ng-template #loginBtn>
-      <button mat-button color="primary" [routerLink]="'auth/login'">Log in</button>
+      <button mat-button color="primary" [routerLink]="'auth/login'">
+        Log in
+      </button>
     </ng-template>
   </ul>
 </nav>
