@@ -1,0 +1,22 @@
+<div class="home-background flex flex-row justify-center pt-12">
+  <div class="w-[50%]">
+    <mat-accordion class="w-full">
+      <ng-container *ngFor="let item of collections">
+        <mat-expansion-panel
+          (opened)="panelOpenState = true"
+          (closed)="panelOpenState = false"
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title>{{ item.CollectionName }}</mat-panel-title>
+            <mat-panel-description> </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>I'm visible because I am open</p>
+        </mat-expansion-panel>
+      </ng-container>
+      <ng-container *ngIf="collections.length == 0"> no data </ng-container>
+      <button mat-button class="mt-4" color="primary">
+        <mat-icon>add</mat-icon>Add Collection
+      </button>
+    </mat-accordion>
+  </div>
+</div>
