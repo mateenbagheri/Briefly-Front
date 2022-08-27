@@ -12,6 +12,7 @@ export class UserService {
   );
   constructor() {
     if (this.token) this.setUserByToken(this.token);
+    
   }
 
   public get token(): string | null {

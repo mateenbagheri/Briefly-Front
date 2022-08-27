@@ -60,7 +60,7 @@ export class RequestBuilder {
 
     const headers = new HttpHeaders({
       "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("Token")}`,
+      Authorization: `${localStorage.getItem("Token")}`,
     });
 
     //check hdr if needed

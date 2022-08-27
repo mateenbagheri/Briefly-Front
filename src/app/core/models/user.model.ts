@@ -1,5 +1,5 @@
 export class User {
-  id;
+  userID;
   username;
   firstName;
   lastName;
@@ -9,7 +9,7 @@ export class User {
   exp;
 
   constructor(el?) {
-    this.id = el?.id;
+    this.userID = el?.userID;
     this.username = el?.username;
     this.firstName = el?.firstName;
     this.lastName = el?.lastName;
