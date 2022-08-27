@@ -8,22 +8,41 @@
           your brand.
         </p>
       </div>
-      <form (ngSubmit)="onSubmitUrl()">
-        <mat-form-field appearance="outline" class="w-full">
-          <mat-label>Enter Url</mat-label>
+      <section class="grid grid-cols-12 gap-4">
+        <mat-form-field appearance="outline" class="col-span-10">
           <mat-icon class="goButton" color="primary">search</mat-icon>
-
           <input
             (keypress.enter)="onSubmitUrl()"
             matInput
-            placeholder="Url"
-            type="text"
-            autocomplete="off"
+            placeholder="Enter Url"
+            [formControl]="linkTextControl"
           />
         </mat-form-field>
-        <button class="submit-button" type="submit"></button>
-      </form>
-      <button mat-raised-button color="primary">Submit</button>
+        <div class="col-span-2 self-center mb-2">
+          <button
+            mat-raised-button
+            color="primary"
+            class="w-full"
+            type="button"
+          >
+            Submit
+          </button>
+        </div>
+        <div class="col-span-10">
+          <strong>Result is:&nbsp;</strong>
+          <span><a>h</a></span>
+        </div>
+        <div class="col-span-2 self-center">
+          <button
+            mat-raised-button
+            color="primary"
+            class="w-full"
+            type="button"
+          >
+            Save
+          </button>
+        </div>
+      </section>
     </div>
   </div>
 </div>
