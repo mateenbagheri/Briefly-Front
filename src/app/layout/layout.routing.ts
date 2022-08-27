@@ -11,7 +11,11 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       { path: "", redirectTo: "main", pathMatch: "full" },
-      { path: "main", component: MainComponent },
+      {
+        path: "main",
+        loadChildren: () =>
+          import("../main/main.module").then((m) => m.MainModule),
+      },
     ],
   },
 ];

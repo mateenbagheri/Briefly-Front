@@ -10,15 +10,12 @@ import { MatMenuModule } from "@angular/material/menu";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MatButtonModule } from "@angular/material/button";
 import { MainComponent } from "./components/main/main.component";
-import { MatInputModule } from "@angular/material/input";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 const matModules = [
   MatButtonModule,
   MatIconModule,
   MatMenuModule,
   MatProgressBarModule,
-  MatInputModule,
 ];
 
 @NgModule({
@@ -32,8 +29,6 @@ const matModules = [
     CommonModule,
     LayoutRoutingModule,
     matModules,
-    FormsModule,
-    ReactiveFormsModule,
     SharedModule,
   ],
 })
