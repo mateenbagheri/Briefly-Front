@@ -22,6 +22,6 @@ export class User {
   public get userFullName(): string | null {
     if (this.firstName || this.lastName)
       return `${this.firstName ?? ""} ${this.lastName}`;
-    else return 'No Name';
+    else return 'Guest';
   }
 }

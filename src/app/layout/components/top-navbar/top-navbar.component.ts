@@ -42,7 +42,7 @@ export class TopNavbarComponent implements OnInit {
 
   onLogout() {
     this.userService.onLogout();
-    this.router.navigate(['auth/login']);
+    // this.router.navigate(['auth/login']);
     this.alertSrv.showToaster('You logged out Successfully!', 'INFO');
   }
 }

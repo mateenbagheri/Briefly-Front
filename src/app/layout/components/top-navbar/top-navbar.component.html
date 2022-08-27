@@ -2,41 +2,46 @@
   <ul class="flex h-full justify-end items-center">
     <h2 class="text-bold brand-font ml-3 mr-auto">Briefly</h2>
 
-    <li >
-      <button mat-button> My Urls <mat-icon>link</mat-icon></button>
+    <li>
+      <button mat-button>My Collections <mat-icon>library_books</mat-icon></button>
     </li>
 
     <li
-      class="py-2 mx-2 rounded-sm text-black cursor-pointer flex flex-col items-end"
+      class="py-2 mx-4 rounded-sm text-black cursor-pointer flex flex-col items-end"
       *ngIf="!pending"
     >
       <span>
-        {{ userService.User.userFullName|replaceUnderline }}
+        {{ userService.User.userFullName | replaceUnderline }}
       </span>
       <span class="text-xs text-gray-400">
         <!-- {{ '-' | tokenDecoder: 'role' | ACCESS }} -->
       </span>
     </li>
-    <li
-      class="mx-2 text-white rounded-full cursor-pointer"
-      [matMenuTriggerFor]="menu"
-      #menuTrigger="matMenuTrigger"
-    >
-      <img
-        *ngIf="hasProfileImg; else noImg"
-        class="w-12 h-12 rounded-full border-2 border-gray-300"
-        src="{{ getImageUrl() }}"
-        alt=""
-        (error)="hasProfileImg = false"
-      />
-      <ng-template #noImg>
+    <ng-container *ngIf="userService.token; else loginBtn"
+      ><li
+        class="mx-2 text-white rounded-full cursor-pointer"
+        [matMenuTriggerFor]="menu"
+        #menuTrigger="matMenuTrigger"
+      >
         <img
-          src="../../../../assets/images/default_profile.png"
+          *ngIf="hasProfileImg; else noImg"
           class="w-12 h-12 rounded-full border-2 border-gray-300"
+          src="{{ getImageUrl() }}"
           alt=""
+          (error)="hasProfileImg = false"
         />
-      </ng-template>
-    </li>
+        <ng-template #noImg>
+          <img
+            src="../../../../assets/images/default_profile.png"
+            class="w-12 h-12 rounded-full border-2 border-gray-300"
+            alt=""
+          />
+        </ng-template>
+      </li>
+    </ng-container>
+    <ng-template #loginBtn>
+      <button mat-button color="primary" [routerLink]="'auth/login'">Log in</button>
+    </ng-template>
   </ul>
 </nav>
 

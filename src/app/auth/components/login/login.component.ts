@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
         next: (response) => {
           this.userService.setUserByToken(response.authorization);
           this.pending = false;
-          this.router.navigate(["/main"]);
+          this.router.navigate(["/briefly"]);
         },
         error: (error) => {
           this.pending = false;
