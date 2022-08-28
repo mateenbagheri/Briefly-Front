@@ -1,8 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl } from "@angular/forms";
+import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
 import { environment } from "src/environments/environment.prod";
 import { MainService } from "../../shared/services/main.service";
+import { CollectionSelectionDialogComponent } from "./collection-selection-dialog/collection-selection-dialog.component";
 
 @Component({
   selector: "app-home-page",
@@ -12,7 +14,11 @@ import { MainService } from "../../shared/services/main.service";
 export class HomePageComponent implements OnInit {
   linkTextControl: FormControl = new FormControl([]);
   result: { text; route } = { text: "", route: "" };
-  constructor(private router: Router, private mainService: MainService) {}
+  constructor(
+    private router: Router,
+    private mainService: MainService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {}
 
@@ -34,5 +40,12 @@ export class HomePageComponent implements OnInit {
       this.router.createUrlTree([`briefly/${route}`])
     );
     window.open(url, "_blank");
+  }
+
+  onSaveBtn() {
+    this.dialog.open(CollectionSelectionDialogComponent, {
+      minHeight: "50vh",
+      minWidth: "40vw",
+    });
   }
 }
