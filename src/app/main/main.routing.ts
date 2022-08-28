@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
+import { AuthGuard } from "../core/guard/auth.guard";
 import { CollectionsComponent } from "./components/collections/collections.component";
 import { HomePageComponent } from "./components/home-page/home-page.component";
 import { LoadShortenUrlComponent } from "./components/load-shorten-url/load-shorten-url.component";
@@ -12,7 +13,11 @@ const routes: Routes = [
     children: [
       { path: "", redirectTo: "home", pathMatch: "full" },
       { path: "home", component: HomePageComponent },
-      { path: "collections", component: CollectionsComponent },
+      {
+        path: "collections",
+        component: CollectionsComponent,
+        canActivate: [AuthGuard],
+      },
       {
         path: ":id",
         component: LoadShortenUrlComponent,
