@@ -53,7 +53,7 @@ export class AuthGuard implements CanActivate, HttpInterceptor {
     if (token && Date.now() <= this.userService.User.exp * 1000) {
       return true;
     }
-    this.toaster.showToaster("You don't have access to this page", "WARNING");
+    this.toaster.showToaster("Please login first", "WARNING");
     // this.router.navigate(["/auth/login"]);
     return false;
   }
