@@ -13,8 +13,15 @@ import { LoadShortenUrlComponent } from "./components/load-shorten-url/load-shor
 import { CollectionsComponent } from "./components/collections/collections.component";
 import { MatExpansionModule } from "@angular/material/expansion";
 import { MatCardModule } from "@angular/material/card";
-import { MatProgressBar, MatProgressBarModule } from "@angular/material/progress-bar";
+import {
+  MatProgressBar,
+  MatProgressBarModule,
+} from "@angular/material/progress-bar";
 import { MatDividerModule } from "@angular/material/divider";
+import { MatCheckboxModule } from "@angular/material/checkbox";
+import { SharedModule } from "../shared/shared.module";
+import { CollectionSelectionDialogComponent } from "./components/home-page/collection-selection-dialog/collection-selection-dialog.component";
+import { MatDialogModule } from "@angular/material/dialog";
 
 const matModules = [
   MatButtonModule,
@@ -26,6 +33,8 @@ const matModules = [
   MatCardModule,
   MatProgressBarModule,
   MatDividerModule,
+  MatCheckboxModule,
+  MatDialogModule,
 ];
 
 @NgModule({
@@ -34,6 +43,7 @@ const matModules = [
     HomePageComponent,
     LoadShortenUrlComponent,
     CollectionsComponent,
+    CollectionSelectionDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -41,6 +51,7 @@ const matModules = [
     FormsModule,
     ReactiveFormsModule,
     MainRoutingModule,
+    SharedModule,
   ],
 })
 export class MainModule {}

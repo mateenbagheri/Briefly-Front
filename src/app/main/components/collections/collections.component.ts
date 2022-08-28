@@ -1,4 +1,5 @@
-import { Component, OnInit } from "@angular/core";
+import { SelectionChange, SelectionModel } from "@angular/cdk/collections";
+import { Component, Input, OnInit, Output, EventEmitter } from "@angular/core";
 import { FormControl } from "@angular/forms";
 import { Subscription } from "rxjs";
 import { filter, first, map } from "rxjs/operators";
@@ -19,13 +20,31 @@ export class CollectionsComponent implements OnInit {
   addMode: boolean = false;
   saveSubscription!: Subscription;
 
+  @Input("selectionMode") selectionMode: "single" | "none" = "none";
+  @Output("selectionChange") selectionChange = new EventEmitter<any>();
+  selection = new SelectionModel<CollectionItem>();
+
   constructor(
     private mainService: MainService,
     private toaster: AlertService
   ) {}
 
   ngOnInit(): void {
+    this.initSelection();
     this.getData();
+  }
+
+  initSelection() {
+    if (this.selectionMode !== "none") {
+      if (this.selectionMode == "single") {
+        this.selection = new SelectionModel<CollectionItem>(false, []);
+      }
+      this.selection.changed.subscribe(
+        (value: SelectionChange<CollectionItem>) => {
+          this.selectionChange.emit(value.source.selected);
+        }
+      );
+    }
   }
 
   getData() {

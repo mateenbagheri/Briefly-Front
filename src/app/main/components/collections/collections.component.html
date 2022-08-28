@@ -7,7 +7,15 @@
           (closed)="panelOpenState = false"
         >
           <mat-expansion-panel-header>
-            <mat-panel-title>{{ item.CollectionName }}</mat-panel-title>
+            <mat-panel-title>
+              <mat-checkbox *ngIf="selectionMode!='none'"
+                click-stop-propagation
+                (change)="$event ? selection.toggle(item) : null"
+                [checked]="selection.isSelected(item)"
+                ></mat-checkbox
+              >
+              {{ item.CollectionName }}</mat-panel-title
+            >
             <mat-panel-description> </mat-panel-description>
           </mat-expansion-panel-header>
           <p>I'm visible because I am open</p>
@@ -23,7 +31,11 @@
         <mat-card-title>Add Collection Form</mat-card-title>
         <mat-card-content>
           <mat-form-field class="w-full">
-            <input matInput [formControl]="collectionNameControl" placeholder="Enter Collection Name here"/>
+            <input
+              matInput
+              [formControl]="collectionNameControl"
+              placeholder="Enter Collection Name here"
+            />
           </mat-form-field>
         </mat-card-content>
         <mat-divider inset></mat-divider>
@@ -38,7 +50,7 @@
         </mat-card-footer>
       </mat-card>
 
-      <button mat-button class="mt-4" color="primary" (click)="addMode=true">
+      <button mat-button class="mt-4" color="primary" (click)="addMode = true">
         <mat-icon>add</mat-icon>Add Collection
       </button>
     </mat-accordion>
