@@ -36,11 +36,11 @@
     </mat-expansion-panel>
   </ng-container>
 
-  <ng-container *ngIf="collections.length == 0"> No data </ng-container>
+  <!-- <ng-container class="block" *ngIf="collections.length == 0&&!addMode"> No data </ng-container> -->
 
   <ng-container *ngIf="addMode"></ng-container>
 
-  <mat-card class="my-2" *ngIf="addMode">
+  <mat-card class="my-2 py-2" *ngIf="addMode">
     <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
     <mat-card-title>Add Collection Form</mat-card-title>
     <mat-card-content>
