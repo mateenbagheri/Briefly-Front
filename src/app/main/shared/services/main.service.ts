@@ -34,4 +34,11 @@ export class MainService {
       .request("GET", "collection/user/" + this.userService.User.userID)
       .send();
   }
+
+  addCollection(CollectionName) {
+   return this.baseHttp.request("POST", "collection/").setBodyParams({
+      CollectionName: CollectionName,
+      UserID: this.userService.User.userID,
+    }).send();
+  }
 }
