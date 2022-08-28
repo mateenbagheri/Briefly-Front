@@ -22,6 +22,7 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
 import { SharedModule } from "../shared/shared.module";
 import { CollectionSelectionDialogComponent } from "./components/home-page/collection-selection-dialog/collection-selection-dialog.component";
 import { MatDialogModule } from "@angular/material/dialog";
+import { CollectionSectionComponent } from './components/collections/collection-section/collection-section.component';
 
 const matModules = [
   MatButtonModule,
@@ -44,6 +45,7 @@ const matModules = [
     LoadShortenUrlComponent,
     CollectionsComponent,
     CollectionSelectionDialogComponent,
+    CollectionSectionComponent,
   ],
   imports: [
     CommonModule,

@@ -8,7 +8,7 @@ import { UserService } from "src/app/core/services/user.service";
 export class MainService {
   constructor(private baseHttp: BaseHttp, private userService: UserService) {}
 
-  shortenUrl(mainUrl) {
+  shortenUrlOrSave(mainUrl, CollectionID) {
     return this.baseHttp
       .request("POST", "url/")
       .setBodyParams({
@@ -18,8 +18,8 @@ export class MainService {
           String: "",
         },
         CollectionID: {
-          Valid: false,
-          Int64: 0,
+          Valid: CollectionID ? true : false,
+          Int64: CollectionID ?? 0,
         },
       })
       .send();
@@ -36,9 +36,12 @@ export class MainService {
   }
 
   addCollection(CollectionName) {
-   return this.baseHttp.request("POST", "collection/").setBodyParams({
-      CollectionName: CollectionName,
-      UserID: this.userService.User.userID,
-    }).send();
+    return this.baseHttp
+      .request("POST", "collection/")
+      .setBodyParams({
+        CollectionName: CollectionName,
+        UserID: this.userService.User.userID,
+      })
+      .send();
   }
 }
