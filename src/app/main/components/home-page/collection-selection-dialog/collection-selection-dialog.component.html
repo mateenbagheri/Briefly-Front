@@ -1,4 +1,18 @@
-<app-collections
+<div class="flex w-full">
+  <h5 class="mb-0 self-center">Select a Collection</h5>
+  <button class="ml-auto" mat-icon-button [mat-dialog-close]="true">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<app-collection-section
+  class="mt-3"
   [selectionMode]="'single'"
   (selectionChange)="selectionChange($event)"
-></app-collections>
+></app-collection-section>
+
+<div class="flex justify-center">
+  <button mat-button color="warn" [mat-dialog-close]="true">Cancel</button>
+  <button mat-button [disabled]="!selectedItem" (click)="onSubmit()">
+    Submit
+  </button>
+</div>
