@@ -74,6 +74,10 @@ export class RequestBuilder {
         break;
       case "POST":
         request$ = this.http.post(url, this.bodyParams, { headers: headers });
+        break;
+      case "PUT":
+        request$ = this.http.post(url, this.bodyParams, { headers: headers });
+        break;
     }
     return request$.pipe(
       retry(0),
