@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { MatDialogRef } from "@angular/material/dialog";
-import { CollectionItem } from "../../collections/collection-section/collection-section.component";
+import { CollectionItem } from "src/app/main/shared/models/collection-item.model";
 
 @Component({
   selector: "app-collection-selection-dialog",

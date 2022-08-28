@@ -2,11 +2,13 @@ import { Component, OnInit } from "@angular/core";
 import { FormControl, RequiredValidator, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
+import { filter, map } from "rxjs/operators";
 import { AlertService } from "src/app/core/alert/alert.service";
 import { UserService } from "src/app/core/services/user.service";
 import { environment } from "src/environments/environment.prod";
+import { CollectionItem } from "../../shared/models/collection-item.model";
+import { UrlItem } from "../../shared/models/url-item.model";
 import { MainService } from "../../shared/services/main.service";
-import { CollectionItem } from "../collections/collection-section/collection-section.component";
 import { CollectionSelectionDialogComponent } from "./collection-selection-dialog/collection-selection-dialog.component";
 
 @Component({
@@ -31,9 +33,13 @@ export class HomePageComponent implements OnInit {
     if (this.linkTextControl.valid) {
       this.mainService
         .shortenUrlOrSave(this.linkTextControl.value, CollectionID)
+        .pipe(
+          filter((value) => value),
+          map((res) => new UrlItem(res))
+        )
         .subscribe((res) => {
           this.result = {
-            text: `http://localhost:4200${environment.serviceBaseUrl}${res.ShortenedUrl}`,
+            text: res.FullShortenedUrl,
             route: res.ShortenedUrl,
           };
         });

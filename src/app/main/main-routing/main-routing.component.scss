@@ -6,3 +6,9 @@
   background-size: cover;
   background-position: center;
 }
+
+.link:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  color: darkblue;
+}

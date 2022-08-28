@@ -44,4 +44,16 @@ export class MainService {
       })
       .send();
   }
+
+  getCollectionUrls(CollectionID) {
+    return this.baseHttp
+      .request("GET", `url/collection/${CollectionID}`)
+      .send();
+  }
+
+  getUserUrls() {
+    return this.baseHttp
+      .request("GET", `url/user/${this.userService.User.userID}`)
+      .send();
+  }
 }
