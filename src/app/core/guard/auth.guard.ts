@@ -15,6 +15,8 @@ import {
 import { tap } from "rxjs/operators";
 import { Observable } from "rxjs";
 import { UserService } from "../services/user.service";
+import { ToastrService } from "ngx-toastr";
+import { AlertService } from "../alert/alert.service";
 
 @Injectable({
   providedIn: "root",
@@ -42,7 +44,8 @@ export class AuthGuard implements CanActivate, HttpInterceptor {
   constructor(
     private router: Router,
     public errorHandler: ErrorHandler,
-    private userService: UserService
+    private userService: UserService,
+    private toaster: AlertService
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
@@ -50,7 +53,8 @@ export class AuthGuard implements CanActivate, HttpInterceptor {
     if (token && Date.now() <= this.userService.User.exp * 1000) {
       return true;
     }
-    this.router.navigate(["/auth/login"]);
+    this.toaster.showToaster("You don't have access to this page", "WARNING");
+    // this.router.navigate(["/auth/login"]);
     return false;
   }
 }
