@@ -1,6 +1,6 @@
 <mat-accordion class="w-full">
   <ng-container *ngFor="let item of collections">
-    <mat-expansion-panel>
+    <mat-expansion-panel (opened)="onOpenExpansion(item)">
       <mat-expansion-panel-header>
         <mat-panel-title>
           <mat-checkbox
@@ -13,11 +13,30 @@
         >
         <mat-panel-description> </mat-panel-description>
       </mat-expansion-panel-header>
-      <p>I'm visible because I am open</p>
+
+      <div class="grid grid-cols-12 gap-y-4">
+        <ng-container *ngIf="item.Urls.length == 0">No data</ng-container>
+
+        <ng-container *ngFor="let el of item.Urls; let i = index">
+          <div class="col-span-1">
+            {{ i + 1 }}
+          </div>
+          <div class="col-span-6">
+            <strong>Link:&nbsp;</strong>
+            <a class="link" [href]="el.MainUrl">{{ el.MainUrl }}</a>
+          </div>
+          <div class="col-span-5">
+            <strong>Shorten:&nbsp;</strong>
+            <a class="link" [href]="el.FullShortenedUrl" target="_blank">{{
+              el.ShortenedUrl
+            }}</a>
+          </div>
+        </ng-container>
+      </div>
     </mat-expansion-panel>
   </ng-container>
 
-  <ng-container *ngIf="collections.length == 0"> no data </ng-container>
+  <ng-container *ngIf="collections.length == 0"> No data </ng-container>
 
   <ng-container *ngIf="addMode"></ng-container>
 

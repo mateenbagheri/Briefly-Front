@@ -1,15 +1,17 @@
-import { SelectionChange, SelectionModel } from '@angular/cdk/collections';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { Subscription } from 'rxjs';
-import { filter, first, map } from 'rxjs/operators';
-import { AlertService } from 'src/app/core/alert/alert.service';
-import { MainService } from 'src/app/main/shared/services/main.service';
+import { SelectionChange, SelectionModel } from "@angular/cdk/collections";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { FormControl } from "@angular/forms";
+import { Subscription } from "rxjs";
+import { filter, first, map } from "rxjs/operators";
+import { AlertService } from "src/app/core/alert/alert.service";
+import { CollectionItem } from "src/app/main/shared/models/collection-item.model";
+import { UrlItem } from "src/app/main/shared/models/url-item.model";
+import { MainService } from "src/app/main/shared/services/main.service";
 
 @Component({
-  selector: 'app-collection-section',
-  templateUrl: './collection-section.component.html',
-  styleUrls: ['./collection-section.component.scss']
+  selector: "app-collection-section",
+  templateUrl: "./collection-section.component.html",
+  styleUrls: ["./collection-section.component.scss"],
 })
 export class CollectionSectionComponent implements OnInit {
   collections: Array<CollectionItem> = [];
@@ -19,7 +21,9 @@ export class CollectionSectionComponent implements OnInit {
   saveSubscription!: Subscription;
 
   @Input("selectionMode") selectionMode: "single" | "none" = "none";
-  @Output("selectionChange") selectionChange = new EventEmitter<Array<CollectionItem>>();
+  @Output("selectionChange") selectionChange = new EventEmitter<
+    Array<CollectionItem>
+  >();
   selection = new SelectionModel<CollectionItem>();
 
   constructor(
@@ -56,6 +60,18 @@ export class CollectionSectionComponent implements OnInit {
       .subscribe((value) => (this.collections = value));
   }
 
+  onOpenExpansion(item: CollectionItem) {
+    this.mainService
+      .getCollectionUrls(item.CollectionID)
+      .pipe(
+        filter((value) => value),
+        map((res) => res.map((el) => new UrlItem(el)))
+      )
+      .subscribe((value) => {
+        item.Urls = value ;
+      });
+  }
+
   onSubmit() {
     this.saveSubscription = this.mainService
       .addCollection(this.collectionNameControl.value)
@@ -69,16 +85,5 @@ export class CollectionSectionComponent implements OnInit {
   onClear() {
     this.collectionNameControl.setValue(null);
     this.addMode = false;
-  }
-}
-
-export class CollectionItem {
-  CollectionID;
-  UserID;
-  CollectionName;
-  constructor(el) {
-    this.CollectionID = el?.CollectionID;
-    this.UserID = el?.UserID;
-    this.CollectionName = el?.CollectionName;
   }
 }
