@@ -21,7 +21,7 @@
         </mat-form-field>
         <div class="col-span-2 self-center mb-2">
           <button
-            mat-raised-button
+            mat-stroked-button
             color="primary"
             class="w-full"
             type="button"
@@ -30,21 +30,26 @@
             Submit
           </button>
         </div>
-        <div class="col-span-10">
-          <strong>Result is:&nbsp;</strong>
-          <span class="link" (click)="openShortenUrl(result.route)">{{result.text}}</span>
-        </div>
-        <div class="col-span-2 self-center">
-          <button
-            mat-raised-button
-            color="primary"
-            class="w-full"
-            type="button"
-            (click)="onSaveBtn()"
-          >
-            Save
-          </button>
-        </div>
+
+        <ng-container *ngIf="result.text">
+          <div class="col-span-10">
+            <strong>Result is:&nbsp;</strong>
+            <span class="link" (click)="openShortenUrl(result.route)">{{
+              result.text
+            }}</span>
+          </div>
+          <div class="col-span-2 self-center" *ngIf="userService.token">
+            <button
+              mat-stroked-button
+              color="primary"
+              class="w-full"
+              type="button"
+              (click)="onSaveBtn()"
+            >
+              Save
+            </button>
+          </div>
+        </ng-container>
       </section>
     </div>
   </div>
