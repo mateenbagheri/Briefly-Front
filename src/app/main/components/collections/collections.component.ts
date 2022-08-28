@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
+import { FormControl } from "@angular/forms";
 import { Subscription } from "rxjs";
 import { filter, first, map } from "rxjs/operators";
+import { AlertService } from "src/app/core/alert/alert.service";
 import { MainService } from "../../shared/services/main.service";
 
 @Component({
@@ -12,7 +14,21 @@ export class CollectionsComponent implements OnInit {
   panelOpenState: boolean = false;
   dataSubscription!: Subscription;
   collections: Array<CollectionItem> = [];
-  constructor(private mainService: MainService) {
+
+  collectionNameControl = new FormControl([]);
+  addMode: boolean = false;
+  saveSubscription!: Subscription;
+
+  constructor(
+    private mainService: MainService,
+    private toaster: AlertService
+  ) {}
+
+  ngOnInit(): void {
+    this.getData();
+  }
+
+  getData() {
     this.mainService
       .getCollections()
       .pipe(
@@ -23,7 +39,20 @@ export class CollectionsComponent implements OnInit {
       .subscribe((value) => (this.collections = value));
   }
 
-  ngOnInit(): void {}
+  onSubmit() {
+    this.saveSubscription = this.mainService
+      .addCollection(this.collectionNameControl.value)
+      .subscribe(() => {
+        this.onClear();
+        this.toaster.showToaster("Collection added successfully", "SUCCESS");
+        this.getData();
+      });
+  }
+
+  onClear() {
+    this.collectionNameControl.setValue(null);
+    this.addMode = false;
+  }
 }
 
 class CollectionItem {

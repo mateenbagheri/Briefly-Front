@@ -13,8 +13,32 @@
           <p>I'm visible because I am open</p>
         </mat-expansion-panel>
       </ng-container>
+
       <ng-container *ngIf="collections.length == 0"> no data </ng-container>
-      <button mat-button class="mt-4" color="primary">
+
+      <ng-container *ngIf="addMode"></ng-container>
+
+      <mat-card class="my-2" *ngIf="addMode">
+        <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+        <mat-card-title>Add Collection Form</mat-card-title>
+        <mat-card-content>
+          <mat-form-field class="w-full">
+            <input matInput [formControl]="collectionNameControl" placeholder="Enter Collection Name here"/>
+          </mat-form-field>
+        </mat-card-content>
+        <mat-divider inset></mat-divider>
+        <mat-card-actions>
+          <button mat-button color="warn" (click)="onClear()">Cancel</button>
+          <button mat-button (click)="onSubmit()">Submit</button>
+        </mat-card-actions>
+        <mat-card-footer>
+          <mat-progress-bar
+            *ngIf="saveSubscription && !saveSubscription.closed"
+          ></mat-progress-bar>
+        </mat-card-footer>
+      </mat-card>
+
+      <button mat-button class="mt-4" color="primary" (click)="addMode=true">
         <mat-icon>add</mat-icon>Add Collection
       </button>
     </mat-accordion>
