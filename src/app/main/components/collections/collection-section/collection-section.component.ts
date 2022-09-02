@@ -1,7 +1,7 @@
 import { SelectionChange, SelectionModel } from "@angular/cdk/collections";
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { FormControl } from "@angular/forms";
-import { Subscription } from "rxjs";
+import { BehaviorSubject, Subscription } from "rxjs";
 import { filter, first, map } from "rxjs/operators";
 import { AlertService } from "src/app/core/alert/alert.service";
 import { CollectionItem } from "src/app/main/shared/models/collection-item.model";
@@ -17,7 +17,8 @@ export class CollectionSectionComponent implements OnInit {
   collections: Array<CollectionItem> = [];
 
   collectionNameControl = new FormControl([]);
-  addMode: boolean = false;
+  editID;
+  addMode = new BehaviorSubject<boolean>(false);
   saveSubscription!: Subscription;
 
   @Input("selectionMode") selectionMode: "single" | "none" = "none";
@@ -34,6 +35,12 @@ export class CollectionSectionComponent implements OnInit {
   ngOnInit(): void {
     this.initSelection();
     this.getData();
+    this.addMode.subscribe((value) => {
+      if (value == false) {
+        this.collectionNameControl.setValue(null);
+        this.editID = null;
+      }
+    });
   }
 
   initSelection() {
@@ -68,22 +75,32 @@ export class CollectionSectionComponent implements OnInit {
         map((res) => res.map((el) => new UrlItem(el)))
       )
       .subscribe((value) => {
-        item.Urls = value ;
+        item.Urls = value;
       });
   }
 
   onSubmit() {
     this.saveSubscription = this.mainService
-      .addCollection(this.collectionNameControl.value)
+      .addCollection(this.collectionNameControl.value, this.editID)
       .subscribe(() => {
-        this.onClear();
-        this.toaster.showToaster("Collection added successfully", "SUCCESS");
+        this.addMode.next(false);
+        this.toaster.showToaster(`Collection added successfully`, "SUCCESS");
         this.getData();
       });
   }
 
-  onClear() {
-    this.collectionNameControl.setValue(null);
-    this.addMode = false;
+  afterSubmit() {}
+
+  onEdit(item: CollectionItem) {
+    this.addMode.next(true);
+    this.editID = item.CollectionID;
+    this.collectionNameControl.setValue(item.CollectionName);
+  }
+
+  onDelete(item: CollectionItem) {
+    this.mainService.deleteCollection(item.CollectionID).subscribe(() => {
+      this.getData();
+      this.toaster.showToaster("Collection deleted successfully", "SUCCESS");
+    });
   }
 }

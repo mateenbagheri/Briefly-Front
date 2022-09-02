@@ -35,20 +35,35 @@ export class MainService {
       .send();
   }
 
-  addCollection(CollectionName) {
-    return this.baseHttp
-      .request("POST", "collection/")
-      .setBodyParams({
-        CollectionName: CollectionName,
-        UserID: this.userService.User.userID,
-      })
-      .send();
+  addCollection(CollectionName, editID?) {
+    if (editID) {
+      return this.baseHttp
+        .request("PUT", `collection/${editID}`)
+        .setBodyParams({
+          CollectionID: editID,
+          CollectionName: CollectionName,
+          UserID: this.userService.User.userID,
+        })
+        .send();
+    } else {
+      return this.baseHttp
+        .request("POST", "collection/")
+        .setBodyParams({
+          CollectionName: CollectionName,
+          UserID: this.userService.User.userID,
+        })
+        .send();
+    }
   }
 
   getCollectionUrls(CollectionID) {
     return this.baseHttp
       .request("GET", `url/collection/${CollectionID}`)
       .send();
+  }
+
+  deleteCollection(CollectionID) {
+    return this.baseHttp.request("DELETE", `collection/${CollectionID}`).send();
   }
 
   getUserUrls() {

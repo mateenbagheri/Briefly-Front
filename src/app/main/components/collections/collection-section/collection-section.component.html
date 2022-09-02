@@ -12,10 +12,20 @@
           <span>{{ item.CollectionName }}</span>
         </mat-panel-title>
         <mat-panel-description>
-          <button class="ml-auto" mat-icon-button>
+          <button
+            click-stop-propagation
+            class="ml-auto"
+            mat-icon-button
+            (click)="onEdit(item)"
+          >
             <mat-icon>edit</mat-icon>
           </button>
-          <button mat-icon-button color="warn">
+          <button
+            click-stop-propagation
+            mat-icon-button
+            color="warn"
+            (click)="onDelete(item)"
+          >
             <mat-icon>delete</mat-icon>
           </button>
         </mat-panel-description>
@@ -45,9 +55,11 @@
 
   <!-- <ng-container class="block" *ngIf="collections.length == 0&&!addMode"> No data </ng-container> -->
 
-  <mat-card class="my-2 py-2" *ngIf="addMode">
+  <mat-card class="my-2 py-2" *ngIf="addMode.value">
     <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
-    <mat-card-title>Add Collection Form</mat-card-title>
+    <mat-card-title>{{
+      !editID ? "Add Collection Form" : "Edit Collection Form"
+    }}</mat-card-title>
     <mat-card-content>
       <mat-form-field class="w-full">
         <input
@@ -59,7 +71,9 @@
     </mat-card-content>
     <mat-divider inset></mat-divider>
     <mat-card-actions>
-      <button mat-button color="warn" (click)="onClear()">Cancel</button>
+      <button mat-button color="warn" (click)="addMode.next(false)">
+        Cancel
+      </button>
       <button mat-button (click)="onSubmit()">Submit</button>
     </mat-card-actions>
     <mat-card-footer>
@@ -69,7 +83,7 @@
     </mat-card-footer>
   </mat-card>
 
-  <button mat-button class="mt-4" color="primary" (click)="addMode = true">
+  <button mat-button class="mt-4" color="primary" (click)="addMode.next(true)">
     <mat-icon>add</mat-icon>Add Collection
   </button>
 </mat-accordion>
