@@ -2,16 +2,23 @@
   <ng-container *ngFor="let item of collections">
     <mat-expansion-panel (opened)="onOpenExpansion(item)">
       <mat-expansion-panel-header>
-        <mat-panel-title>
+        <mat-panel-title class="items-center">
           <mat-checkbox
             *ngIf="selectionMode != 'none'"
             click-stop-propagation
             (change)="$event ? selection.toggle(item) : null"
             [checked]="selection.isSelected(item)"
           ></mat-checkbox>
-          {{ item.CollectionName }}</mat-panel-title
-        >
-        <mat-panel-description> </mat-panel-description>
+          <span>{{ item.CollectionName }}</span>
+        </mat-panel-title>
+        <mat-panel-description>
+          <button class="ml-auto" mat-icon-button>
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-panel-description>
       </mat-expansion-panel-header>
 
       <div class="grid grid-cols-12 gap-y-4">
@@ -37,8 +44,6 @@
   </ng-container>
 
   <!-- <ng-container class="block" *ngIf="collections.length == 0&&!addMode"> No data </ng-container> -->
-
-  <ng-container *ngIf="addMode"></ng-container>
 
   <mat-card class="my-2 py-2" *ngIf="addMode">
     <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
