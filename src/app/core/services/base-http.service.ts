@@ -76,7 +76,10 @@ export class RequestBuilder {
         request$ = this.http.post(url, this.bodyParams, { headers: headers });
         break;
       case "PUT":
-        request$ = this.http.post(url, this.bodyParams, { headers: headers });
+        request$ = this.http.put(url, this.bodyParams, { headers: headers });
+        break;
+      case "DELETE":
+        request$ = this.http.delete(url, { headers: headers });
         break;
     }
     return request$.pipe(
