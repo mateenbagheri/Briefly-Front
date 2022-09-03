@@ -15,9 +15,9 @@
             placeholder="Enter Url"
             [formControl]="linkTextControl"
           />
-          <mat-icon class="go-button" mat-suffix color="primary"
-            >search</mat-icon
-          >
+          <span matSuffix >
+            <mat-icon class="relative top-1" color="primary">search</mat-icon>
+          </span>
         </mat-form-field>
         <div class="col-span-2 self-center mb-2">
           <button
@@ -31,11 +31,11 @@
           </button>
         </div>
 
-        <ng-container *ngIf="result.text">
+        <ng-container *ngIf="result?.FullShortenedUrl">
           <div class="col-span-10">
             <strong>Result is:&nbsp;</strong>
-            <span class="link" (click)="openShortenUrl(result.route)">{{
-              result.text
+            <span class="link" (click)="openShortenUrl(result.ShortenedUrl)">{{
+              result.FullShortenedUrl
             }}</span>
           </div>
           <div class="col-span-2 self-center" *ngIf="userService.token">

@@ -18,7 +18,7 @@ import { CollectionSelectionDialogComponent } from "./collection-selection-dialo
 })
 export class HomePageComponent implements OnInit {
   linkTextControl: FormControl = new FormControl([null], Validators.required);
-  result: { text; route } = { text: "", route: "" };
+  result!: UrlItem;
   constructor(
     private router: Router,
     private mainService: MainService,
@@ -29,19 +29,16 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onSubmitUrl(CollectionID?) {
+  onSubmitUrl() {
     if (this.linkTextControl.valid) {
       this.mainService
-        .shortenUrlOrSave(this.linkTextControl.value, CollectionID)
+        .shortenUrl(this.linkTextControl.value)
         .pipe(
           filter((value) => value),
           map((res) => new UrlItem(res))
         )
         .subscribe((res) => {
-          this.result = {
-            text: res.FullShortenedUrl,
-            route: res.ShortenedUrl,
-          };
+          this.result = res;
         });
     }
   }
@@ -63,8 +60,13 @@ export class HomePageComponent implements OnInit {
       .subscribe((value: CollectionItem) => {
         if (value) {
           /**Save */
-          this.onSubmitUrl(value.CollectionID);
-          this.toaster.showToaster("Url saved successfully");
+          this.mainService.saveUrlInCollection(
+            this.result.LinkID,
+            value.CollectionID
+          ).subscribe((res)=>{
+
+            this.toaster.showToaster("Url saved successfully");
+          });
         }
       });
   }

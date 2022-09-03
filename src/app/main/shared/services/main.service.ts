@@ -8,7 +8,7 @@ import { UserService } from "src/app/core/services/user.service";
 export class MainService {
   constructor(private baseHttp: BaseHttp, private userService: UserService) {}
 
-  shortenUrlOrSave(mainUrl, CollectionID) {
+  shortenUrl(mainUrl) {
     return this.baseHttp
       .request("POST", "url/")
       .setBodyParams({
@@ -17,10 +17,16 @@ export class MainService {
           Valid: false,
           String: "",
         },
-        CollectionID: {
-          Valid: CollectionID ? true : false,
-          Int64: CollectionID ?? 0,
-        },
+      })
+      .send();
+  }
+
+  saveUrlInCollection(LinkID, CollectionID) {
+    return this.baseHttp
+      .request("POST", "url/")
+      .setBodyParams({
+        LinkID: LinkID,
+        CollectionID: CollectionID,
       })
       .send();
   }

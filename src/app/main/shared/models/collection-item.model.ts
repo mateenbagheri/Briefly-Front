@@ -5,7 +5,9 @@ export class CollectionItem {
   UserID;
   CollectionName;
 
+  /**Additional Vars */
   Urls: Array<UrlItem> = [];
+
   constructor(el) {
     this.CollectionID = el?.CollectionID;
     this.UserID = el?.UserID;
