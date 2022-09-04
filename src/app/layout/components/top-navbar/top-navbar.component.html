@@ -1,10 +1,27 @@
 <nav class="sticky top-0 bg-white h-14 w-full z-50">
   <ul class="flex h-full justify-end items-center">
-    <h2 class="text-bold brand brand-font ml-3 mr-auto cursor-pointer" [routerLink]="''">Briefly</h2>
+    <h2
+      class="text-bold brand brand-font ml-3 mr-auto cursor-pointer"
+      [routerLink]="''"
+    >
+      Briefly
+    </h2>
 
     <li>
-      <button mat-button [routerLink]="'briefly/collections'" [routerLinkActive]="'active'">
+      <button
+        mat-button
+        [routerLink]="'briefly/collections'"
+        [routerLinkActive]="'active'"
+      >
         My Collections <mat-icon>library_books</mat-icon>
+      </button>
+      <button
+        mat-button
+        [routerLink]="'briefly/history'"
+        [routerLinkActive]="'active'"
+        *ngIf="userService.token"
+      >
+        My History <mat-icon> schedule</mat-icon>
       </button>
     </li>
 
