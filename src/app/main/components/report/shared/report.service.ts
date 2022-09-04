@@ -11,12 +11,12 @@ export class ReportService {
 
   getHistroy() {
     return this.baseHttp
-      .request('GET', 'collection/user/' + this.userService.User.userID)
+      .request('GET', `/url/user/${this.userService.User.userID}/history`)
       .send();
   }
   getTopLinkReport() {
     return this.baseHttp
-      .request('GET', 'collection/user/' + this.userService.User.userID)
+      .request('GET', `/url/user/${this.userService.User.userID}/report`)
       .send();
   }
 }

@@ -6,6 +6,8 @@ import { TopLinkChartComponent } from './components/top-link-chart/top-link-char
 import { ReportService } from './shared/report.service';
 import { ReportLayoutComponent } from './components/report-layout/report-layout.component';
 import { ReportRoutingModule } from './report.routing';
+import { AgGridModule } from 'ag-grid-angular';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,7 @@ import { ReportRoutingModule } from './report.routing';
     TopLinkComponent,
     TopLinkChartComponent,
   ],
-  imports: [CommonModule, ReportRoutingModule],
+  imports: [CommonModule, ReportRoutingModule,AgGridModule,NgApexchartsModule],
   providers: [ReportService],
 })
 export class ReportModule {}

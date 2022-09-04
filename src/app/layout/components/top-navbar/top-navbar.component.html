@@ -17,8 +17,9 @@
       </button>
       <button
         mat-button
-        [routerLink]="'briefly/collections'"
+        [routerLink]="'briefly/history'"
         [routerLinkActive]="'active'"
+        *ngIf="userService.token"
       >
         My History <mat-icon> schedule</mat-icon>
       </button>

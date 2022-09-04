@@ -1,1 +1,9 @@
-<p>top-link works!</p>
+<span class="p-2">Top Links</span>
+<ag-grid-angular
+   style="width: 100%; height: 50%"
+   class="ag-theme-alpine"
+   [columnDefs]="columnDefs"
+   [defaultColDef]="defaultColDef"
+   [rowData]="rowData$ | async"
+   (gridReady)="onGridReady($event)"
+ ></ag-grid-angular>

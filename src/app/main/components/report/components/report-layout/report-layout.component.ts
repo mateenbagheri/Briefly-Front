@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-report-layout',
@@ -6,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReportLayoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(private readonly router : Router,private readonly userService : UserService) { }
 
   ngOnInit(): void {
+    if(!this.userService.token)
+    this.router.navigate(['./briefly/home'])
   }
 
 }

@@ -23,7 +23,6 @@ import { SharedModule } from "../shared/shared.module";
 import { CollectionSelectionDialogComponent } from "./components/home-page/collection-selection-dialog/collection-selection-dialog.component";
 import { MatDialogModule } from "@angular/material/dialog";
 import { CollectionSectionComponent } from './components/collections/collection-section/collection-section.component';
-import { ReportModule } from "./components/report/report.module";
 
 const matModules = [
   MatButtonModule,
