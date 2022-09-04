@@ -15,7 +15,7 @@ export class UrlItem {
     this.ShortenedUrl = el?.ShortenedUrl;
     this.MainUrl = el?.MainUrl;
     this.ExpDate = el?.ExpDate;
-    this.CollectionID = el?.CollectionID;
+    // this.CollectionID = el?.CollectionID;
     this.CreateDate = el?.CreateDate
     this.HitDate = el?.HitDate
     this.CollectionName = el?.CollectionName
