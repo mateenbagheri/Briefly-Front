@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   onLogin() {
-    if (this.forms.valid) {
+    // if (this.forms.valid) {
       const { value } = this.forms;
       let model = {
         Email: value.username,
@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
           this.pending = false;
         },
       });
-    }
+    // }
   }
 
   onRedirectToRegister() {

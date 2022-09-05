@@ -23,7 +23,7 @@ export class MainService {
 
   saveUrlInCollection(LinkID, CollectionID) {
     return this.baseHttp
-      .request("POST", "url/")
+      .request("POST", "collection/url")
       .setBodyParams({
         LinkID: LinkID,
         CollectionID: CollectionID,
