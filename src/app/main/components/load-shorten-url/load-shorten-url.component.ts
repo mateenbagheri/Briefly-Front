@@ -21,7 +21,7 @@ export class LoadShortenUrlComponent implements OnInit {
       .getMainUrl(this.activatedRoute.snapshot.params.id)
       .subscribe((res) => {
         window.open(res.MainUrl, "_self");
-        this.location.back();
+        // this.location.back();
       });
   }
 }

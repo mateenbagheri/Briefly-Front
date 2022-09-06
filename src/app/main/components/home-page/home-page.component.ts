@@ -57,14 +57,13 @@ export class HomePageComponent implements OnInit {
         minWidth: "40vw",
       })
       .afterClosed()
-      .subscribe((value: CollectionItem) => {
+      .subscribe((value: CollectionItem) => {        
         if (value) {
           /**Save */
           this.mainService.saveUrlInCollection(
             this.result.LinkID,
             value.CollectionID
           ).subscribe((res)=>{
-
             this.toaster.showToaster("Url saved successfully");
           });
         }
